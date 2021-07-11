@@ -9,8 +9,9 @@ import Combine
 import Foundation
 import NetworkFramework
 
+@MainActor
 final class PopularViewModel: ObservableObject {
-    
+
     // MARK: - Public functions
 
     @Published var popularFilms: [Film] = []
@@ -25,18 +26,24 @@ final class PopularViewModel: ObservableObject {
         self.networkService = networkService
     }
 
-    func fetchFilms() async {
-        guard let url = URL(string: "https://api.themoviedb.org/3/movie/popular") else { return }
+    func fetchFilms(byOffset offset: Int) async {
+        guard popularFilms.count - offset == 10 else { return }
+        let page = (popularFilms.count / 20) + 1
+        await fetchFilms(byPage: page)
+    }
 
-        let parameter = PopularFilmsParameters(apiKey: "b68988dea30b5d9064f62c20d3363101", language: "RU")
+    func fetchFilms(byPage page: Int = 1) async {
+        guard let url = URL(string: DiContainer.endpoints.popular) else { return }
 
+        let parameter = PopularFilmsParameters(apiKey: DiContainer.apiKeys.apiKey, language: "RU", page: page)
+        Log.debug(parameter)
         do {
             guard let response = try await networkService.get(
                 forModel: ResponceFilms.self,
                 forUrl: url,
                 withParameters: parameter
             ) else { return }
-            popularFilms = response.results
+            popularFilms.append(contentsOf: response.results)
         } catch {
             print("🔴 \(error)")
         }

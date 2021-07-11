@@ -13,29 +13,19 @@ struct FilmRowView: View {
 
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500/" + film.posterPath)) { image in
-                image.resizable().frame(height: 140)
+            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500/\(film.posterPath ?? "")")) { image in
+                image.resizable()
             } placeholder: {
-                Color.red
+                ProgressView()
             }
-//            AsyncImage(
-//                url: URL(string: "https://image.tmdb.org/t/p/w500/" + film.posterPath),
-//                content: { image in
-//                    image.image?.resizable()
-//                        .frame(height: 140)
-//                }
-//            )
-//            Image("testImage", bundle: .main)
-//                .resizable()
-            ////                .aspectRatio(contentMode: .fill)
-//                .frame(height: 140)
-            Text(film.title)
+            Text(film.title).lineLimit(1)
         }
+        .frame(height: 160)
     }
 }
 
 struct FilmRowView_Previews: PreviewProvider {
     static var previews: some View {
-        FilmRowView(film: Film(title: "title", posterPath: "/5cbGVDmRMYVzkq5cItZ7cYlDdDR.jpg"))
+        FilmRowView(film: Film(id: 1, title: "title", posterPath: "/5cbGVDmRMYVzkq5cItZ7cYlDdDR.jpg"))
     }
 }

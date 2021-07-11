@@ -10,8 +10,8 @@ import NetworkFramework
 
 struct PopularFilmsParameters: RequestParametersProtocol {
     static var caseType: CaseTypes { .snakeCase }
-    
 
     let apiKey: String
     let language: String
+    let page: Int
 }

@@ -22,7 +22,9 @@ struct PopularView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(Array(viewModel.popularFilms.enumerated()), id: \.element) { item in
-                    FilmRowView(film: item.element)
+                    FilmRowView(film: item.element).task {
+                        await viewModel.fetchFilms(byOffset: item.offset)
+                    }
                 }
             }
             .padding(16)
