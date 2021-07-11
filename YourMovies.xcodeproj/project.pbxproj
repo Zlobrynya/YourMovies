@@ -23,6 +23,7 @@
 		81CA9CF9269B3D1A00C88B92 /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA9CF8269B3D1A00C88B92 /* DiContainer.swift */; };
 		81CA9CFC269B3E1C00C88B92 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81CA9CFB269B3E1C00C88B92 /* ApiKeys.plist */; };
 		81CA9CFE269B3E3700C88B92 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA9CFD269B3E3700C88B92 /* ApiKeys.swift */; };
+		81CA9D02269B401A00C88B92 /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA9D01269B401A00C88B92 /* MainScreenView.swift */; };
 		81D514652690D57900733009 /* FilmRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D514642690D57900733009 /* FilmRowView.swift */; };
 		81F67A3C269235F2003CB6FE /* PopularViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F67A3B269235F2003CB6FE /* PopularViewModel.swift */; };
 		81F67A3F2692367D003CB6FE /* NetworkFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F67A3E2692367D003CB6FE /* NetworkFramework.xcframework */; };
@@ -61,6 +62,7 @@
 		81CA9CF8269B3D1A00C88B92 /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
 		81CA9CFB269B3E1C00C88B92 /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		81CA9CFD269B3E3700C88B92 /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
+		81CA9D01269B401A00C88B92 /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		81D514642690D57900733009 /* FilmRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmRowView.swift; sourceTree = "<group>"; };
 		81F67A3B269235F2003CB6FE /* PopularViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewModel.swift; sourceTree = "<group>"; };
 		81F67A3E2692367D003CB6FE /* NetworkFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NetworkFramework.xcframework; path = Carthage/Build/NetworkFramework.xcframework; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				81CA9CEA269B36D700C88B92 /* Endpoints */,
 				81CA9CE7269AF44300C88B92 /* Service */,
 				81D514602690D44000733009 /* Popular */,
+				81CA9CFF269B3F4300C88B92 /* MainScreenView */,
 				8149B8FB2687702C007AB018 /* YourMoviesApp.swift */,
 				8149B8FF2687702D007AB018 /* Assets.xcassets */,
 				8149B9012687702D007AB018 /* Preview Content */,
@@ -161,6 +164,22 @@
 				81CA9CFD269B3E3700C88B92 /* ApiKeys.swift */,
 			);
 			path = ApiKeys;
+			sourceTree = "<group>";
+		};
+		81CA9CFF269B3F4300C88B92 /* MainScreenView */ = {
+			isa = PBXGroup;
+			children = (
+				81CA9D00269B3F5600C88B92 /* Views */,
+			);
+			path = MainScreenView;
+			sourceTree = "<group>";
+		};
+		81CA9D00269B3F5600C88B92 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				81CA9D01269B401A00C88B92 /* MainScreenView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		81D514602690D44000733009 /* Popular */ = {
@@ -303,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81CA9D02269B401A00C88B92 /* MainScreenView.swift in Sources */,
 				81CA9CFE269B3E3700C88B92 /* ApiKeys.swift in Sources */,
 				81F67A3C269235F2003CB6FE /* PopularViewModel.swift in Sources */,
 				8197558F269358FB0018F7F3 /* Film.swift in Sources */,
