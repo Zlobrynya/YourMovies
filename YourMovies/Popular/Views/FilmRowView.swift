@@ -8,21 +8,34 @@
 import SwiftUI
 
 struct FilmRowView: View {
-    
-    let text: String
-    
+
+    let film: Film
+
     var body: some View {
         VStack {
-            Image("testImage", bundle: .main)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-            Text(text)
+            AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500/" + film.posterPath)) { image in
+                image.resizable().frame(height: 140)
+            } placeholder: {
+                Color.red
+            }
+//            AsyncImage(
+//                url: URL(string: "https://image.tmdb.org/t/p/w500/" + film.posterPath),
+//                content: { image in
+//                    image.image?.resizable()
+//                        .frame(height: 140)
+//                }
+//            )
+//            Image("testImage", bundle: .main)
+//                .resizable()
+            ////                .aspectRatio(contentMode: .fill)
+//                .frame(height: 140)
+            Text(film.title)
         }
     }
 }
 
 struct FilmRowView_Previews: PreviewProvider {
     static var previews: some View {
-        FilmRowView(text: "FilmRowView")
+        FilmRowView(film: Film(title: "title", posterPath: "/5cbGVDmRMYVzkq5cItZ7cYlDdDR.jpg"))
     }
 }

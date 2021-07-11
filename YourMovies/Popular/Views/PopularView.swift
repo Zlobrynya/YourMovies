@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PopularView: View {
     let data = (1...100).map { "Item \($0)" }
+    
+    @ObservedObject var viewModel: PopularViewModel
 
     let columns = [
         GridItem(.flexible()),
@@ -19,17 +21,19 @@ struct PopularView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(data, id: \.self) { item in
-                    FilmRowView(text: item)
+                ForEach(Array(viewModel.popularFilms.enumerated()), id: \.element) { item in
+                    FilmRowView(film: item.element)
                 }
             }
-            .padding(.horizontal)
+            .padding(16)
+        }.task {
+            await viewModel.fetchFilms()
         }
     }
 }
 
 struct PopularView_Previews: PreviewProvider {
     static var previews: some View {
-        PopularView()
+        PopularView(viewModel: PopularViewModel())
     }
 }
