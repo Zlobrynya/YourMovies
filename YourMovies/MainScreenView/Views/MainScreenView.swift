@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct MainScreenView: View {
+
+    // MARK: - Body
+
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            CarouselView()
+            Spacer()
+        }
     }
+
+    // MARK: - Views
+
+   
 }
 
 struct MainScreenView_Previews: PreviewProvider {

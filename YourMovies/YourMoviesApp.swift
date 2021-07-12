@@ -11,7 +11,7 @@ import SwiftUI
 struct YourMoviesApp: App {
     var body: some Scene {
         WindowGroup {
-            PopularView(viewModel: PopularViewModel())
+            MainScreenView()
         }
     }
 }
