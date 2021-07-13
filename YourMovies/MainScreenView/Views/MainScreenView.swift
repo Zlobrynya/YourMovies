@@ -8,13 +8,22 @@
 import SwiftUI
 
 struct MainScreenView: View {
+    
+    let data: [String] = ["testImage2", "testImage3", "testImage4",
+                          "testImage2", "testImage3", "testImage4",
+                          "testImage2", "testImage3", "testImage4"]
 
     // MARK: - Body
 
     var body: some View {
         VStack {
-            CarouselView()
             Spacer()
+            CarouselView(array: data) { item in
+                Image(item, bundle: .main)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+            .padding()
         }
     }
 

@@ -15,4 +15,8 @@ enum Log {
     static func debug(_ value: Any?) {
         print("🔵 \(String(describing: value))")
     }
+    
+    static func info(_ value: Any?) {
+        print("🟢 \(String(describing: value))")
+    }
 }
