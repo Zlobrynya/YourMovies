@@ -27,6 +27,7 @@
 		81CA9D02269B401A00C88B92 /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA9D01269B401A00C88B92 /* MainScreenView.swift */; };
 		81CA9D04269B6BF300C88B92 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81CA9D03269B6BF300C88B92 /* Color.xcassets */; };
 		81CA9D06269B6C3F00C88B92 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CA9D05269B6C3F00C88B92 /* Color.swift */; };
+		81CDF0FB269F518600D06D17 /* CarouselStateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CDF0FA269F518600D06D17 /* CarouselStateObject.swift */; };
 		81D514652690D57900733009 /* FilmRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D514642690D57900733009 /* FilmRowView.swift */; };
 		81F67A3C269235F2003CB6FE /* PopularViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F67A3B269235F2003CB6FE /* PopularViewModel.swift */; };
 		81F67A3F2692367D003CB6FE /* NetworkFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F67A3E2692367D003CB6FE /* NetworkFramework.xcframework */; };
@@ -69,6 +70,7 @@
 		81CA9D01269B401A00C88B92 /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		81CA9D03269B6BF300C88B92 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		81CA9D05269B6C3F00C88B92 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		81CDF0FA269F518600D06D17 /* CarouselStateObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselStateObject.swift; sourceTree = "<group>"; };
 		81D514642690D57900733009 /* FilmRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmRowView.swift; sourceTree = "<group>"; };
 		81F67A3B269235F2003CB6FE /* PopularViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewModel.swift; sourceTree = "<group>"; };
 		81F67A3E2692367D003CB6FE /* NetworkFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NetworkFramework.xcframework; path = Carthage/Build/NetworkFramework.xcframework; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		8149B8FA2687702C007AB018 /* YourMovies */ = {
 			isa = PBXGroup;
 			children = (
+				81CDF0F8269F512F00D06D17 /* Views */,
 				81CA9CF7269B3D0E00C88B92 /* DiContainer */,
 				81CA9CF2269B3C0F00C88B92 /* Extensions */,
 				81CA9CFA269B3E0800C88B92 /* ApiKeys */,
@@ -186,9 +189,25 @@
 			isa = PBXGroup;
 			children = (
 				81CA9D01269B401A00C88B92 /* MainScreenView.swift */,
-				81B2AB0D269C9E340033CF61 /* СarouselView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		81CDF0F8269F512F00D06D17 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				81CDF0F9269F513E00D06D17 /* CarouselView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		81CDF0F9269F513E00D06D17 /* CarouselView */ = {
+			isa = PBXGroup;
+			children = (
+				81B2AB0D269C9E340033CF61 /* СarouselView.swift */,
+				81CDF0FA269F518600D06D17 /* CarouselStateObject.swift */,
+			);
+			path = CarouselView;
 			sourceTree = "<group>";
 		};
 		81D514602690D44000733009 /* Popular */ = {
@@ -346,6 +365,7 @@
 				81B2AB0E269C9E340033CF61 /* СarouselView.swift in Sources */,
 				81CA9CE9269AF47900C88B92 /* Log.swift in Sources */,
 				81CA9CEE269B377900C88B92 /* Endpoints.swift in Sources */,
+				81CDF0FB269F518600D06D17 /* CarouselStateObject.swift in Sources */,
 				81CA9CF9269B3D1A00C88B92 /* DiContainer.swift in Sources */,
 				81D514652690D57900733009 /* FilmRowView.swift in Sources */,
 				81CA9CF0269B3A1900C88B92 /* PlistFactory.swift in Sources */,
