@@ -33,7 +33,7 @@ final class PopularViewModel: ObservableObject {
     }
 
     func fetchFilms(byPage page: Int = 1) async {
-        guard let url = URL(string: DiContainer.endpoints.popular) else { return }
+        guard let url = URL(string: DiContainer.endpoints.popularMovies) else { return }
 
         let parameter = PopularFilmsParameters(apiKey: DiContainer.apiKeys.apiKey, language: "RU", page: page)
         Log.debug(parameter)

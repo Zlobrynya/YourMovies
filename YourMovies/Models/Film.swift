@@ -8,18 +8,20 @@
 import Foundation
 import Metal
 
-protocol FilmProtocol: Decodable, Hashable {
+protocol FilmProtocol: Decodable {
     var id: Int { get }
     var title: String { get }
     var posterPath: String? { get }
+    var backdropPath: String? { get }
 }
 
-struct Film: FilmProtocol {
+struct Film: FilmProtocol, Hashable {
     
     private enum CodeKeys: String, CodingKey {
         case id
         case title
         case posterPath = "poster_path"
+        case backdropPath = "backdrop_path"
     }
     
     // MARK: - Public functions
@@ -27,12 +29,14 @@ struct Film: FilmProtocol {
     let id: Int
     let title: String
     let posterPath: String?
+    let backdropPath: String?
     
     // MARK: - Lifecycle
     
-    init(id: Int, title: String, posterPath: String) {
+    init(id: Int, title: String, posterPath: String?, backdropPath: String?) {
         self.title = title
         self.posterPath = posterPath
+        self.backdropPath = backdropPath
         self.id = id
     }
     
@@ -41,6 +45,7 @@ struct Film: FilmProtocol {
         id = try container.decode(Int.self, forKey: .id)
         title = try container.decode(String.self, forKey: .title)
         posterPath = try? container.decode(String.self, forKey: .posterPath)
+        backdropPath = try? container.decode(String.self, forKey: .backdropPath)
     }
     
 }

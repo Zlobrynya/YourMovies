@@ -26,6 +26,6 @@ struct FilmRowView: View {
 
 struct FilmRowView_Previews: PreviewProvider {
     static var previews: some View {
-        FilmRowView(film: Film(id: 1, title: "title", posterPath: "/5cbGVDmRMYVzkq5cItZ7cYlDdDR.jpg"))
+        FilmRowView(film: Film(id: 1, title: "title", posterPath: "/5cbGVDmRMYVzkq5cItZ7cYlDdDR.jpg", backdropPath: nil))
     }
 }

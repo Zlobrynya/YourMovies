@@ -8,28 +8,38 @@
 import SwiftUI
 
 struct MainScreenView: View {
-    
-    let data: [String] = ["testImage2", "testImage3", "testImage4",
-                          "testImage2", "testImage3", "testImage4",
-                          "testImage2", "testImage3", "testImage4"]
+
+    @ObservedObject var viewModel: MainScreenViewModel
+
+    // MARK: - Lifecycle
+
+    init(viewModel: MainScreenViewModel = MainScreenViewModel()) {
+        self.viewModel = viewModel
+    }
 
     // MARK: - Body
 
     var body: some View {
         VStack {
+            carousel
             Spacer()
-            CarouselView(array: data) { item in
-                Image(item, bundle: .main)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            }
-            .padding()
+        }.task {
+            await viewModel.featchData()
         }
     }
 
     // MARK: - Views
 
-   
+    var carousel: AnyView? {
+        guard let films = viewModel.topRateMovies else { return nil }
+        return AnyView(
+            CarouselView(array: films) { item in
+                TopRateRowView(film: item)
+            }
+            .frame(height: 300)
+            .padding()
+        )
+    }
 }
 
 struct MainScreenView_Previews: PreviewProvider {

@@ -4,7 +4,11 @@
 <dict>
 	<key>storeImage</key>
 	<string>https://image.tmdb.org/t/p/w500/</string>
-	<key>popular</key>
-	<string>https://api.themoviedb.org/3/movie/popular</string>
+	<key>mainApi</key>
+	<string>https://api.themoviedb.org/3/</string>
+	<key>popularMovies</key>
+	<string>movie/popular</string>
+	<key>topRatedMovies</key>
+	<string>movie/top_rated</string>
 </dict>
 </plist>
