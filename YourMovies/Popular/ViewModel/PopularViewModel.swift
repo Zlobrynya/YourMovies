@@ -41,7 +41,8 @@ final class PopularViewModel: ObservableObject {
             guard let response = try await networkService.get(
                 forModel: ResponceFilms.self,
                 forUrl: url,
-                withParameters: parameter
+                withParameters: parameter,
+                andHeaders: nil
             ) else { return }
             popularFilms.append(contentsOf: response.results)
         } catch {

@@ -16,23 +16,21 @@ struct TopRateRowView: View {
     // MARK: - Body
 
     var body: some View {
-        image
-            .overlay(title)
+        image.overlay(title)
     }
 
     // MARK: - Views
 
     var image: some View {
-        AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500/\(film.backdropPath ?? "")")) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .cornerRadius(20)
-        } placeholder: {
-            ProgressView()
-        }
+        // swiftlint:disable force_unwrapping
+        Image(
+            url: URL(string: "https://image.tmdb.org/t/p/w500/\(film.backdropPath ?? "")")!,
+            content: { $0.resizable().aspectRatio(contentMode: .fit) },
+            placeholder: { ProgressView() }
+        )
+        .cornerRadius(20)
     }
-    
+
     var title: some View {
         VStack {
             Spacer()
