@@ -20,10 +20,15 @@ struct Image<P, I>: View where P: View, I: View {
 
     // MARK: - Lifecycle
 
-    init(url: URL, @ViewBuilder content: @escaping (SwiftUI.Image) -> I, @ViewBuilder placeholder: @escaping () -> P) {
+    init(
+        url: URL,
+        @ViewBuilder content: @escaping (SwiftUI.Image) -> I,
+        @ViewBuilder placeholder: @escaping () -> P,
+        imageViewModelFactory: ImageViewModelFactoryProtocol = ImageViewModelFactory()
+    ) {
         self.placeholder = placeholder
         self.content = content
-        viewModel = ImageViewModel(url: url)
+        viewModel = imageViewModelFactory.viewModel(with: url)
     }
 
     // MARK: - Body
@@ -54,9 +59,10 @@ struct Image_Previews: PreviewProvider {
     static let url = URL(string: "test")!
 
     static var previews: some View {
-        Text("Placeholder")
-//        Image(url: url) {
-//            Text("Placeholder")
-//        }
+        Image(
+            url: url,
+            content: { $0 },
+            placeholder: { ProgressView() }
+        )
     }
 }

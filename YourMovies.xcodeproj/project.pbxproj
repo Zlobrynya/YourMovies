@@ -16,6 +16,10 @@
 		8149B8FE2687702C007AB018 /* PopularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8149B8FD2687702C007AB018 /* PopularView.swift */; };
 		8149B9002687702D007AB018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8149B8FF2687702D007AB018 /* Assets.xcassets */; };
 		8149B9032687702D007AB018 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8149B9022687702D007AB018 /* Preview Assets.xcassets */; };
+		81608BD326A47ED6000556B5 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81608BD226A47ED6000556B5 /* ImageCache.swift */; };
+		81608BD626A47F3B000556B5 /* DirectoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81608BD526A47F3B000556B5 /* DirectoryProvider.swift */; };
+		81608BD826A4854F000556B5 /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81608BD726A4854F000556B5 /* Directory.swift */; };
+		81608BDA26A5FE2F000556B5 /* ImageViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81608BD926A5FE2F000556B5 /* ImageViewModelFactory.swift */; };
 		8197558F269358FB0018F7F3 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8197558E269358FB0018F7F3 /* Film.swift */; };
 		8197559126935A260018F7F3 /* ResponceFilms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8197559026935A260018F7F3 /* ResponceFilms.swift */; };
 		8197559326935A6B0018F7F3 /* PopularFilmsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8197559226935A6B0018F7F3 /* PopularFilmsParameters.swift */; };
@@ -51,6 +55,10 @@
 		8149B8FD2687702C007AB018 /* PopularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularView.swift; sourceTree = "<group>"; };
 		8149B8FF2687702D007AB018 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8149B9022687702D007AB018 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		81608BD226A47ED6000556B5 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		81608BD526A47F3B000556B5 /* DirectoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryProvider.swift; sourceTree = "<group>"; };
+		81608BD726A4854F000556B5 /* Directory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directory.swift; sourceTree = "<group>"; };
+		81608BD926A5FE2F000556B5 /* ImageViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModelFactory.swift; sourceTree = "<group>"; };
 		8197558E269358FB0018F7F3 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		8197559026935A260018F7F3 /* ResponceFilms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponceFilms.swift; sourceTree = "<group>"; };
 		8197559226935A6B0018F7F3 /* PopularFilmsParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularFilmsParameters.swift; sourceTree = "<group>"; };
@@ -176,9 +184,28 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		81608BD126A47EAA000556B5 /* ImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				81608BD226A47ED6000556B5 /* ImageCache.swift */,
+			);
+			path = ImageCache;
+			sourceTree = "<group>";
+		};
+		81608BD426A47EFF000556B5 /* DirectoryProvider */ = {
+			isa = PBXGroup;
+			children = (
+				81608BD526A47F3B000556B5 /* DirectoryProvider.swift */,
+				81608BD726A4854F000556B5 /* Directory.swift */,
+			);
+			path = DirectoryProvider;
+			sourceTree = "<group>";
+		};
 		81CA9CE7269AF44300C88B92 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				81608BD426A47EFF000556B5 /* DirectoryProvider */,
+				81608BD126A47EAA000556B5 /* ImageCache */,
 				81CA9CE8269AF47900C88B92 /* Log.swift */,
 				81CA9CEF269B3A1900C88B92 /* PlistFactory.swift */,
 				81CA9D05269B6C3F00C88B92 /* Color.swift */,
@@ -281,6 +308,7 @@
 			children = (
 				81EAC9B326A42CEC00193B73 /* Image.swift */,
 				81EAC9B526A430C200193B73 /* ImageViewModel.swift */,
+				81608BD926A5FE2F000556B5 /* ImageViewModelFactory.swift */,
 			);
 			path = AsyncImage;
 			sourceTree = "<group>";
@@ -405,12 +433,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8136992626A33569008E52CC /* TopRateMoviewNetworkClient.swift in Sources */,
+				81608BDA26A5FE2F000556B5 /* ImageViewModelFactory.swift in Sources */,
 				81EAC9B426A42CEC00193B73 /* Image.swift in Sources */,
 				81CA9D02269B401A00C88B92 /* MainScreenView.swift in Sources */,
 				81CA9CFE269B3E3700C88B92 /* ApiKeys.swift in Sources */,
 				81F67A3C269235F2003CB6FE /* PopularViewModel.swift in Sources */,
 				8197558F269358FB0018F7F3 /* Film.swift in Sources */,
 				8197559126935A260018F7F3 /* ResponceFilms.swift in Sources */,
+				81608BD826A4854F000556B5 /* Directory.swift in Sources */,
 				81CA9D06269B6C3F00C88B92 /* Color.swift in Sources */,
 				8149B8FE2687702C007AB018 /* PopularView.swift in Sources */,
 				8136992326A33280008E52CC /* MainScreenViewModel.swift in Sources */,
@@ -418,6 +448,7 @@
 				81EAC9B626A430C200193B73 /* ImageViewModel.swift in Sources */,
 				81CA9CF4269B3C1D00C88B92 /* Bundle.swift in Sources */,
 				8136992D26A33E2C008E52CC /* GeneralParameters.swift in Sources */,
+				81608BD326A47ED6000556B5 /* ImageCache.swift in Sources */,
 				8149B8FC2687702C007AB018 /* YourMoviesApp.swift in Sources */,
 				8197559326935A6B0018F7F3 /* PopularFilmsParameters.swift in Sources */,
 				81CA9CF6269B3CC900C88B92 /* PropertyListDecoder.swift in Sources */,
@@ -429,6 +460,7 @@
 				81CA9CF9269B3D1A00C88B92 /* DiContainer.swift in Sources */,
 				81D514652690D57900733009 /* FilmRowView.swift in Sources */,
 				81CA9CF0269B3A1900C88B92 /* PlistFactory.swift in Sources */,
+				81608BD626A47F3B000556B5 /* DirectoryProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
