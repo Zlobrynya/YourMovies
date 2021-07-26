@@ -15,11 +15,11 @@ final class MainScreenViewModel: ObservableObject {
     
     // MARK: - External Dependencies
     
-    private let topRateNetworkClient: TopRateMoviewNetworkClientProtocol
+    private let topRateNetworkClient: TrendingNetworkClientProtocol
     
     // MARK: - Lifecycle
     
-    init(topRateNetworkClient: TopRateMoviewNetworkClientProtocol = TopRateMoviewNetworkClient()) {
+    init(topRateNetworkClient: TrendingNetworkClientProtocol = TrendingNetworkClient()) {
         self.topRateNetworkClient = topRateNetworkClient
     }
     
@@ -28,11 +28,10 @@ final class MainScreenViewModel: ObservableObject {
     @MainActor
     func featchData() async {
         do {
-            topRateMovies = try await topRateNetworkClient.topRate()
+            topRateMovies = try await topRateNetworkClient.trendingMovies()
         } catch {
             Log.error(error)
         }
-        Log.debug(topRateMovies)
     }
     
 }

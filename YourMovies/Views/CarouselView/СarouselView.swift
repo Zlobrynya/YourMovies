@@ -33,7 +33,7 @@ struct CarouselView<Content, T>: View where Content: View, T: Hashable {
                         .offset(x: carouselState.movingOffset)
                         .gesture(drag(proxy: globalProxy.size.width * 0.8))
                 }
-            }.onAppear { Log.debug(globalProxy.size) }
+            }
         }
     }
 

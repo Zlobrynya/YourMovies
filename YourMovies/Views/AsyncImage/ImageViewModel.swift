@@ -16,7 +16,7 @@ final class ImageViewModel: ObservableObject {
 
     // MARK: - External Dependencies
 
-    let url: URL
+    let url: String?
 
     private let networkService: NetworkServiceProtocol
     private let imageCache: ImageCacheProtocol
@@ -24,7 +24,7 @@ final class ImageViewModel: ObservableObject {
     // MARK: - Lifecycle
 
     init(
-        url: URL,
+        url: String?,
         networkService: NetworkServiceProtocol = NetworkService(),
         imageCache: ImageCacheProtocol = ImageCache()
     ) {
@@ -37,6 +37,8 @@ final class ImageViewModel: ObservableObject {
 
     @MainActor
     func fetchImage() async {
+        guard let url = url, let url = URL(string: url) else { return }
+        
         let fileName = url.lastPathComponent.replacingOccurrences(of: ".jpg", with: "")
 
         if let image = imageCache.get(for: fileName) {

@@ -1,5 +1,5 @@
 //
-//  TopRateRowView.swift
+//  TrendingRowView.swift
 //  YourMovies
 //
 //  Created by Nikita Nikitin on 17.07.2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TopRateRowView: View {
+struct TrendingRowView: View {
 
     // MARK: - External Dependencies
 
@@ -22,9 +22,8 @@ struct TopRateRowView: View {
     // MARK: - Views
 
     var image: some View {
-        // swiftlint:disable force_unwrapping
-        Image(
-            url: URL(string: "https://image.tmdb.org/t/p/w500/\(film.backdropPath ?? "")")!,
+        ImageView(
+            url: film.backdropPath,
             content: { $0.resizable().aspectRatio(contentMode: .fit) },
             placeholder: { ProgressView() }
         )
@@ -59,8 +58,7 @@ struct TopRateRowView_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack {
-            TopRateRowView(film: film)
-                .padding()
+            TrendingRowView(film: film).padding()
         }
     }
 }

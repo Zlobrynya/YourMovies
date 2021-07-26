@@ -11,8 +11,20 @@ import Metal
 protocol FilmProtocol: Decodable {
     var id: Int { get }
     var title: String { get }
-    var posterPath: String? { get }
-    var backdropPath: String? { get }
+    var posterPath: String? { get set }
+    var backdropPath: String? { get set }
+}
+
+extension FilmProtocol {
+    mutating func updatePath(withStoreImageUrl url: String) {
+        if let posterPath = posterPath {
+            self.posterPath = url + posterPath
+        }
+        
+        if let backdropPath = backdropPath {
+            self.backdropPath = url + backdropPath
+        }
+    }
 }
 
 struct Film: FilmProtocol, Hashable {
@@ -28,8 +40,8 @@ struct Film: FilmProtocol, Hashable {
 
     let id: Int
     let title: String
-    let posterPath: String?
-    let backdropPath: String?
+    var posterPath: String?
+    var backdropPath: String?
     
     // MARK: - Lifecycle
     

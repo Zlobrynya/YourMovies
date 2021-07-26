@@ -1,5 +1,5 @@
 //
-//  Image.swift
+//  ImageView.swift
 //  YourMovies
 //
 //  Created by Nikita Nikitin on 18.07.2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Image<P, I>: View where P: View, I: View {
+struct ImageView<P, I>: View where P: View, I: View {
 
     // MARK: - Private properties
 
@@ -16,13 +16,14 @@ struct Image<P, I>: View where P: View, I: View {
     // MARK: - External Dependencies
 
     @ViewBuilder private var placeholder: () -> P
-    @ViewBuilder private var content: (SwiftUI.Image) -> I
+    @ViewBuilder private var content: (
+        Image) -> I
 
     // MARK: - Lifecycle
 
     init(
-        url: URL,
-        @ViewBuilder content: @escaping (SwiftUI.Image) -> I,
+        url: String?,
+        @ViewBuilder content: @escaping (Image) -> I,
         @ViewBuilder placeholder: @escaping () -> P,
         imageViewModelFactory: ImageViewModelFactoryProtocol = ImageViewModelFactory()
     ) {
@@ -46,7 +47,7 @@ struct Image<P, I>: View where P: View, I: View {
     @ViewBuilder
     var main: some View {
         if let image = viewModel.image {
-            content(SwiftUI.Image(uiImage: image))
+            content(Image(uiImage: image))
         } else {
             placeholder()
         }
@@ -55,11 +56,10 @@ struct Image<P, I>: View where P: View, I: View {
 
 struct Image_Previews: PreviewProvider {
 
-    // swiftlint:disable:next force_unwrapping
-    static let url = URL(string: "test")!
+    static let url = "https://image.tmdb.org/t/p/w500/yizL4cEKsVvl17Wc1mGEIrQtM2F.jpg"
 
     static var previews: some View {
-        Image(
+        ImageView(
             url: url,
             content: { $0 },
             placeholder: { ProgressView() }

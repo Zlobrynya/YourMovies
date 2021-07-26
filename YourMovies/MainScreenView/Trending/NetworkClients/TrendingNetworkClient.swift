@@ -1,5 +1,5 @@
 //
-//  TopRateMoviewNetworkClient.swift
+//  TrendingNetworkClient.swift
 //  YourMovies
 //
 //  Created by Nikita Nikitin on 17.07.2021.
@@ -8,22 +8,22 @@
 import Foundation
 import NetworkFramework
 
-protocol TopRateMoviewNetworkClientProtocol {
-    func topRate() async throws -> [Film]?
+protocol TrendingNetworkClientProtocol {
+    func trendingMovies() async throws -> [Film]?
 }
 
-struct TopRateMoviewNetworkClient: TopRateMoviewNetworkClientProtocol {
+struct TrendingNetworkClient: TrendingNetworkClientProtocol {
 
     // MARK: - External Dependencies
 
     private let networkService: NetworkServiceProtocol
-    private let constants: TopRateConstantsProtocol
+    private let constants: TrendingConstantsProtocol
     
     // MARK: - Lifecycle
 
     init(
         networkService: NetworkServiceProtocol = NetworkService(),
-        constants: TopRateConstantsProtocol = TopRateConstants()
+        constants: TrendingConstantsProtocol = TrendingConstants()
     ) {
         self.networkService = networkService
         self.constants = constants
@@ -31,14 +31,17 @@ struct TopRateMoviewNetworkClient: TopRateMoviewNetworkClientProtocol {
 
     // MARK: - Public functions
 
-    func topRate() async throws -> [Film]? {
-        guard let url = URL(string: constants.topRatedMovies) else { throw NetworkingError.emptyResponse }
+    func trendingMovies() async throws -> [Film]? {
+        guard let url = URL(string: constants.trendingMovies) else { throw NetworkingError.emptyResponse }
         let parameters = GeneralParameters(apiKey: constants.apiKey, language: constants.language)
-        return try await networkService.get(
+        let films = try await networkService.get(
             forModel: ResponceFilms.self,
             forUrl: url,
             withParameters: parameters,
             andHeaders: nil
         )?.results
+        guard var films = films else { return nil }
+        films = films.updatePath(withStoreImageUrl: constants.storeImage)
+        return films
     }
 }

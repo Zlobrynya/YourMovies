@@ -34,7 +34,7 @@ struct MainScreenView: View {
         guard let films = viewModel.topRateMovies else { return nil }
         return AnyView(
             CarouselView(array: films) { item in
-                TopRateRowView(film: item)
+                TrendingRowView(film: item)
             }
             .frame(height: 300)
             .padding()
