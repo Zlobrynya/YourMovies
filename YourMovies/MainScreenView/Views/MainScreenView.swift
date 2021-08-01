@@ -37,7 +37,6 @@ struct MainScreenView: View {
                 TrendingRowView(film: item)
             }
             .frame(height: 300)
-            .padding()
         )
     }
 }

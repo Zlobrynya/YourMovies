@@ -33,6 +33,7 @@ struct TrendingConstants: TrendingConstantsProtocol {
         timeWindowsPlaceholder: TimeWindowsPlaceholderProtocol = TimeWindowsPlaceholder()
     ) {
         language = locale.currencyCode ?? "en"
+        Log.debug(language)
         apiKey = apiKeys.apiKey
         storeImage = endpoints.storeImage
         trendingMovies = endpoints.mainApi + endpoints.trending

@@ -42,7 +42,7 @@ struct TrendingRowView: View {
                 Spacer()
             }
             .font(.system(size: 12))
-            .padding(8)
+            //.padding(8)
         }
     }
 }
