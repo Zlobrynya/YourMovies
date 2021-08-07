@@ -32,8 +32,8 @@ struct TrendingConstants: TrendingConstantsProtocol {
         mediaTypePlaceholder: MediaTypePlaceholderProtocol = MediaTypePlaceholder(),
         timeWindowsPlaceholder: TimeWindowsPlaceholderProtocol = TimeWindowsPlaceholder()
     ) {
-        language = locale.currencyCode ?? "en"
-        Log.debug(language)
+        language = locale.languageCode ?? "en"
+        Log.debug(Locale.current.languageCode)
         apiKey = apiKeys.apiKey
         storeImage = endpoints.storeImage
         trendingMovies = endpoints.mainApi + endpoints.trending

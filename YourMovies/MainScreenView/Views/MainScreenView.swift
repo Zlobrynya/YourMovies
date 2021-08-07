@@ -20,11 +20,14 @@ struct MainScreenView: View {
     // MARK: - Body
 
     var body: some View {
-        VStack {
-            carousel
-            Spacer()
-        }.task {
-            await viewModel.featchData()
+        NavigationView {
+            VStack(spacing: 8) {
+                carousel
+                test
+            }
+            .background(Color.backgoundSecond)
+            .task { await viewModel.featchData() }
+            .navigationBarHidden(true)
         }
     }
 
@@ -32,12 +35,17 @@ struct MainScreenView: View {
 
     var carousel: AnyView? {
         guard let films = viewModel.topRateMovies else { return nil }
-        return AnyView(
-            CarouselView(array: films) { item in
-                TrendingRowView(film: item)
-            }
-            .frame(height: 300)
-        )
+        return TrendingView(items: films).asAnyView()
+    }
+
+    var test: some View {
+        VStack {
+            Text("TEst")
+            Spacer()
+        }
+        .frame(minWidth: 0, maxWidth: .infinity)
+        .background { Rectangle().fill(Color.white) }
+        .cornerRadius(20, corners: [.topLeft, .topRight])
     }
 }
 

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CarouselView<Content, T>: View where Content: View, T: Hashable {
 
-    @ObservedObject var carouselState: CarouselState<T>
     @GestureState var offset: CGFloat = 0
     @GestureState var scaleEffect: CGFloat = 0
 
@@ -24,28 +23,26 @@ struct CarouselView<Content, T>: View where Content: View, T: Hashable {
 
     // MARK: - Lifecycle
 
-    // ???
     init(array: [T], @ViewBuilder action: @escaping (T) -> Content) {
         self.action = action
         self.array = array
-        carouselState = CarouselState(conent: array)
     }
 
     // MARK: - Body
 
     var body: some View {
         GeometryReader { globalProxy in
+            // TODO: Should hide in a separate class
             let width = globalProxy.size.width - tralingSpacing
-            let test = currentItem != 0 ? ((tralingSpacing / 2) + CGFloat(self.currentItem) * abs(spacing)) : 0
+            let additionalOffset = currentItem != 0 ? ((tralingSpacing / 2) + CGFloat(self.currentItem) * abs(spacing)) : 0
             HStack(spacing: spacing) {
-                ForEach(Array(carouselState.content.enumerated()), id: \.offset) { offset, item in
+                ForEach(Array(array.enumerated()), id: \.offset) { offset, item in
                     action(item)
                         .frame(width: width)
-                        .scaleEffect(testScale(offset: offset))
-                        .border(currentItem == offset ? Color.red : Color.green)
+                        .scaleEffect(scale(for: offset))
                 }
             }
-            .offset(x: (CGFloat(currentItem) * -width) + test + self.offset)
+            .offset(x: (CGFloat(currentItem) * -width) + additionalOffset + self.offset)
             .gesture(
                 DragGesture()
                     .updating($offset, body: { value, out, _ in
@@ -75,7 +72,7 @@ struct CarouselView<Content, T>: View where Content: View, T: Hashable {
         .animation(.easeInOut, value: offset == 0)
     }
 
-    func testScale(offset: Int) -> CGFloat {
+    func scale(for offset: Int) -> CGFloat {
         guard offset != currentItem else { return 1 }
         let defaultScale = 0.8
         guard offset != (currentItem - 1) || (offset != currentItem + 1) else { return defaultScale }

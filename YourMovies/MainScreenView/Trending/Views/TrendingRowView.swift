@@ -16,7 +16,9 @@ struct TrendingRowView: View {
     // MARK: - Body
 
     var body: some View {
-        image.overlay(title)
+        image
+            .shadow(color: .black.opacity(0.40), radius: 8, x: 1, y: 1)
+            .overlay(title)
     }
 
     // MARK: - Views
@@ -42,7 +44,7 @@ struct TrendingRowView: View {
                 Spacer()
             }
             .font(.system(size: 12))
-            //.padding(8)
+            .padding(8)
         }
     }
 }
