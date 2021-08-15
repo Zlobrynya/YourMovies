@@ -54,8 +54,7 @@ struct MainScreenView: View {
 
     var topRates: AnyView? {
         guard let films = viewModel.topRateMovies else { return nil }
-        return TopReatedView(films: films)
-            .frame(height: 200)
+        return TopRatedView(films: films)
             .asAnyView()
     }
 }

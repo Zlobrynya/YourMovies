@@ -51,6 +51,7 @@ struct CarouselView<Content, T>: View where Content: View, T: Hashable {
                         .scaleEffect(scale(for: offset))
                 }
             }
+            .frame(width: globalProxy.size.width, height: globalProxy.size.height, alignment: .leading)
             .offset(x: (CGFloat(currentItem) * -width) + additionalOffset + self.offset)
             .gesture(
                 DragGesture()
@@ -78,8 +79,6 @@ struct CarouselView<Content, T>: View where Content: View, T: Hashable {
                     }
             )
         }
-        .frame(height: 200)
-        .border(Color.red)
         .animation(.easeInOut, value: offset == 0)
     }
 

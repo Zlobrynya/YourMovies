@@ -38,6 +38,7 @@ struct TrendingRowView: View {
             HStack {
                 Text(film.title)
                     .foregroundColor(.white)
+                    .lineLimit(1)
                     .padding(6)
                     .background(Color.black.opacity(0.60))
                     .cornerRadius(20)

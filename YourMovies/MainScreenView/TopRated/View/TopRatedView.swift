@@ -1,13 +1,13 @@
 //
-//  TopReatedView.swift
-//  TopReatedView
+//  TopRatedView.swift
+//  TopRatedView
 //
 //  Created by Nikita Nikitin on 15.08.2021.
 //
 
 import SwiftUI
 
-struct TopReatedView: View {
+struct TopRatedView: View {
 
     // MARK: - External Dependencies
 
@@ -32,16 +32,16 @@ struct TopReatedView: View {
                 LazyHStack {
                     ForEach(films, id: \.id) { film in
                         TopRatedRowView(film: film)
-                            .frame(width: proxy.size.width / 3)
+                            .frame(width: proxy.size.width / 3, height: proxy.size.height)
                     }
                 }.padding([.horizontal], 12)
             }
-        }
+        }.frame(height: UIScreen.main.bounds.height / 5)
     }
 }
 
 struct TopReatedView_Previews: PreviewProvider {
     static var previews: some View {
-        TopReatedView(films: [])
+        TopRatedView(films: [])
     }
 }

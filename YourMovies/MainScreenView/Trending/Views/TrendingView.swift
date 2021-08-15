@@ -23,6 +23,7 @@ struct TrendingView: View {
                 CarouselView(array: items) { item in
                     TrendingRowView(film: item)
                 }
+                .frame(height: UIScreen.main.bounds.height / 5)
                 .padding(.horizontal, 30)
             }
         )
