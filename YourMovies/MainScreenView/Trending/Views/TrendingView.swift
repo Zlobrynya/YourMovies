@@ -23,10 +23,9 @@ struct TrendingView: View {
                 CarouselView(array: items) { item in
                     TrendingRowView(film: item)
                 }
+                .padding(.horizontal, 30)
             }
         )
-        .frame(height: 200)
-        .padding([.top, .horizontal], 12)
     }
 }
 

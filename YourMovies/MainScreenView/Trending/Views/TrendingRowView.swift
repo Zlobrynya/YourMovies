@@ -23,7 +23,7 @@ struct TrendingRowView: View {
 
     // MARK: - Views
 
-    var image: some View {
+    private var image: some View {
         ImageView(
             url: film.backdropPath,
             content: { $0.resizable().aspectRatio(contentMode: .fit) },
@@ -32,7 +32,7 @@ struct TrendingRowView: View {
         .cornerRadius(20)
     }
 
-    var title: some View {
+    private var title: some View {
         VStack {
             Spacer()
             HStack {

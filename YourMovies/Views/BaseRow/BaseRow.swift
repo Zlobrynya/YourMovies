@@ -9,28 +9,42 @@ import SwiftUI
 
 struct BaseRow<C, T>: View where C: View, T: View {
 
-    // MARK: - Public properties
+    // MARK: - External Dependencies
 
-    var title: LocalizedStringKey
-    @ViewBuilder var content: () -> C
-    @ViewBuilder var titleView: (Text) -> T
+    private var title: LocalizedStringKey
+    private var spacing: CGFloat
+    @ViewBuilder private var content: () -> C
+    @ViewBuilder private var titleView: (Text) -> T
 
     // MARK: - Lifecycle
 
     init(
         title: LocalizedStringKey,
+        spacing: CGFloat = 12,
         titleView: @escaping (Text) -> T,
         content: @escaping () -> C
     ) {
         self.title = title
+        self.spacing = spacing
         self.titleView = titleView
+        self.content = content
+    }
+    
+    init(
+        title: LocalizedStringKey,
+        spacing: CGFloat = 12,
+        content: @escaping () -> C
+    ) where T == Text {
+        self.title = title
+        self.spacing = spacing
+        self.titleView = { $0 }
         self.content = content
     }
 
     // MARK: - Body
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: spacing) {
             titleView(Text(title))
             content()
         }

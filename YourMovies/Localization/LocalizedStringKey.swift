@@ -9,4 +9,5 @@ import SwiftUI
 
 extension LocalizedStringKey {
     static let dailyTrendingMovies: Self = "dailyTrendingMovies"
+    static let topRatedMovies: Self = "topRatedMovies"
 }

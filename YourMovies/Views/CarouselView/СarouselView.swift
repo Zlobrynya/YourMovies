@@ -9,23 +9,32 @@ import SwiftUI
 
 struct CarouselView<Content, T>: View where Content: View, T: Hashable {
 
-    @GestureState var offset: CGFloat = 0
-    @GestureState var scaleEffect: CGFloat = 0
+    // MARK: - Private properties
 
-    @State var currentItem = 0
-    @State var index = 0
+    @GestureState private var offset: CGFloat = 0
+    @GestureState private var scaleEffect: CGFloat = 0
+    @State private var currentItem = 0
+    @State private var index = 0
 
-    let spacing: CGFloat = -15
-    let tralingSpacing: CGFloat = 60
+    // MARK: - External Dependencies
 
-    var action: (T) -> Content
-    let array: [T]
+    private let spacing: CGFloat
+    private let tralingSpacing: CGFloat
+    private var action: (T) -> Content
+    private let array: [T]
 
     // MARK: - Lifecycle
 
-    init(array: [T], @ViewBuilder action: @escaping (T) -> Content) {
+    init(
+        array: [T],
+        tralingSpacing: CGFloat = 30,
+        spacing: CGFloat = -15,
+        @ViewBuilder action: @escaping (T) -> Content
+    ) {
         self.action = action
         self.array = array
+        self.spacing = spacing
+        self.tralingSpacing = tralingSpacing
     }
 
     // MARK: - Body
@@ -69,6 +78,8 @@ struct CarouselView<Content, T>: View where Content: View, T: Hashable {
                     }
             )
         }
+        .frame(height: 200)
+        .border(Color.red)
         .animation(.easeInOut, value: offset == 0)
     }
 

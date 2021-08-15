@@ -33,19 +33,30 @@ struct MainScreenView: View {
 
     // MARK: - Views
 
-    var carousel: AnyView? {
-        guard let films = viewModel.topRateMovies else { return nil }
-        return TrendingView(items: films).asAnyView()
-    }
-
     var test: some View {
         VStack {
-            Text("TEst")
+            topRates
             Spacer()
         }
         .frame(minWidth: 0, maxWidth: .infinity)
         .background { Rectangle().fill(Color.white) }
         .cornerRadius(20, corners: [.topLeft, .topRight])
+    }
+
+    // MARK: - Optional Views
+
+    var carousel: AnyView? {
+        guard let films = viewModel.topRateMovies else { return nil }
+        return TrendingView(items: films)
+            .padding([.top, .horizontal], 12)
+            .asAnyView()
+    }
+
+    var topRates: AnyView? {
+        guard let films = viewModel.topRateMovies else { return nil }
+        return TopReatedView(films: films)
+            .frame(height: 200)
+            .asAnyView()
     }
 }
 
