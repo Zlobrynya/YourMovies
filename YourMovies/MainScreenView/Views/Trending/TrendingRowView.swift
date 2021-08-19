@@ -11,7 +11,7 @@ struct TrendingRowView: View {
 
     // MARK: - External Dependencies
 
-    let film: Film
+    let film: FilmProtocol
 
     // MARK: - Body
 

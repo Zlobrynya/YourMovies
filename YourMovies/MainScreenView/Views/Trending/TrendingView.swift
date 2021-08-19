@@ -9,21 +9,24 @@ import SwiftUI
 
 struct TrendingView: View {
 
-    // MARK: - Public functions
+    // MARK: - External Dependencies
 
-    var items: [Film]
+    @EnvironmentObject private var stylingProvider: StylingProvider
+    @EnvironmentObject private var stringProvider: LocalizableStringProvider
+
+    var items: [FilmProtocol]
 
     // MARK: - Body
 
     var body: some View {
         BaseRow(
-            title: .dailyTrendingMovies,
+            title: stringProvider.dailyTrendingMovies,
             titleView: { $0.foregroundColor(.white) },
             content: {
                 CarouselView(array: items) { item in
                     TrendingRowView(film: item)
                 }
-                .frame(height: UIScreen.main.bounds.height / 5)
+                .frame(height: stylingProvider.heightRow)
                 .padding(.horizontal, 30)
             }
         )
@@ -32,6 +35,6 @@ struct TrendingView: View {
 
 struct TrendingView_Previews: PreviewProvider {
     static var previews: some View {
-        TrendingView(items: [.init(id: 1, title: "title", posterPath: "", backdropPath: "")])
+        TrendingView(items: [Film(id: 1, title: "title", posterPath: "", backdropPath: "")])
     }
 }

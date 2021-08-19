@@ -11,7 +11,7 @@ struct BaseRow<C, T>: View where C: View, T: View {
 
     // MARK: - External Dependencies
 
-    private var title: LocalizedStringKey
+    private var title: String
     private var spacing: CGFloat
     @ViewBuilder private var content: () -> C
     @ViewBuilder private var titleView: (Text) -> T
@@ -19,7 +19,7 @@ struct BaseRow<C, T>: View where C: View, T: View {
     // MARK: - Lifecycle
 
     init(
-        title: LocalizedStringKey,
+        title: String,
         spacing: CGFloat = 12,
         titleView: @escaping (Text) -> T,
         content: @escaping () -> C
@@ -31,7 +31,7 @@ struct BaseRow<C, T>: View where C: View, T: View {
     }
     
     init(
-        title: LocalizedStringKey,
+        title: String,
         spacing: CGFloat = 12,
         content: @escaping () -> C
     ) where T == Text {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CarouselView<Content, T>: View where Content: View, T: Hashable {
+struct CarouselView<Content, T>: View where Content: View {
 
     // MARK: - Private properties
 

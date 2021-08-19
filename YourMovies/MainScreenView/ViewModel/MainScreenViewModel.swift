@@ -11,8 +11,9 @@ final class MainScreenViewModel: ObservableObject {
     
     // MARK: - Public properties
     
-    @Published var topRateMovies: [Film]?
-    
+    @Published var trendingRateMovies: [FilmProtocol]?
+    @Published var topRateMovies: [FilmProtocol]?
+
     // MARK: - External Dependencies
     
     private let topRateNetworkClient: TrendingNetworkClientProtocol
@@ -28,7 +29,16 @@ final class MainScreenViewModel: ObservableObject {
     @MainActor
     func featchData() async {
         do {
-            topRateMovies = try await topRateNetworkClient.trendingMovies()
+            Task.detached(priority: .medium) {
+                self.trendingRateMovies = try await self.topRateNetworkClient.trendingMovies()
+                Log.info("Task.detached first \(Thread.current)")
+            }
+            
+            Task.detached(priority: .medium) {
+                self.topRateMovies = try await self.topRateNetworkClient.trendingMovies()
+                Log.info("Task.detached second \(Thread.current)")
+            }
+            Log.info("details downl")
         } catch {
             Log.error(error)
         }

@@ -9,7 +9,7 @@ import Foundation
 import NetworkFramework
 
 protocol TrendingNetworkClientProtocol {
-    func trendingMovies() async throws -> [Film]?
+    func trendingMovies() async throws -> [FilmProtocol]?
 }
 
 struct TrendingNetworkClient: TrendingNetworkClientProtocol {
@@ -31,7 +31,7 @@ struct TrendingNetworkClient: TrendingNetworkClientProtocol {
 
     // MARK: - Public functions
 
-    func trendingMovies() async throws -> [Film]? {
+    func trendingMovies() async throws -> [FilmProtocol]? {
         guard let url = URL(string: constants.trendingMovies) else { throw NetworkingError.emptyResponse }
         let parameters = GeneralParameters(apiKey: constants.apiKey, language: constants.language)
         let films = try await networkService.get(
@@ -42,6 +42,7 @@ struct TrendingNetworkClient: TrendingNetworkClientProtocol {
         )?.results
         guard var films = films else { return nil }
         films = films.updatePath(withStoreImageUrl: constants.storeImage)
+        Log.info("trendingMovies")
         return films
     }
 }

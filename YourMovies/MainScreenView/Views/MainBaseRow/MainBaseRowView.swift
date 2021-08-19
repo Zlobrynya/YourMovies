@@ -1,25 +1,27 @@
 //
-//  TopRatedView.swift
-//  TopRatedView
+//  MainBaseRowView.swift
+//  MainBaseRowView
 //
 //  Created by Nikita Nikitin on 15.08.2021.
 //
 
 import SwiftUI
 
-struct TopRatedView: View {
+struct MainBaseRowView: View {
 
     // MARK: - External Dependencies
 
+    @EnvironmentObject private var stylingProvider: StylingProvider
     var films: [FilmProtocol]
+    var title: String
 
     // MARK: - Body
 
     var body: some View {
         BaseRow(
-            title: .topRatedMovies,
+            title: title,
             spacing: 8,
-            titleView: { $0.padding([.horizontal], 12) },
+            titleView: { $0.padding([.horizontal], stylingProvider.spacing12) },
             content: { filmsView }
         )
     }
@@ -31,17 +33,27 @@ struct TopRatedView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
                     ForEach(films, id: \.id) { film in
-                        TopRatedRowView(film: film)
+                        image(forUrl: film.posterPath)
                             .frame(width: proxy.size.width / 3, height: proxy.size.height)
                     }
-                }.padding([.horizontal], 12)
+                }.padding([.horizontal], stylingProvider.spacing12)
             }
-        }.frame(height: UIScreen.main.bounds.height / 5)
+        }.frame(height: stylingProvider.heightRow)
+    }
+    
+    // MARK: - Private functions
+
+    private func image(forUrl url: String?) -> some View {
+        ImageView(
+            url: url,
+            content: { $0.itemSize() },
+            placeholder: { ProgressView() }
+        )
     }
 }
 
 struct TopReatedView_Previews: PreviewProvider {
     static var previews: some View {
-        TopRatedView(films: [])
+        MainBaseRowView(films: [], title: "")
     }
 }
