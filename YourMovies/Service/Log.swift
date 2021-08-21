@@ -34,6 +34,16 @@ enum Log {
         line: Int = #line
     ) {
         let className = file.split(separator: "/").last ?? ""
-        Swift.debugPrint("\(type.rawValue) \(className)[\(line)] - \(function): \(String(describing: value))")
+        let function = function.split(separator: "(").first ?? ""
+        let date = Date().getFormattedDate(format: "HH:mm:ss.SSS")
+        Swift.debugPrint("\(type.rawValue) \(className)[\(line)]  \(date) - \(function): \(String(describing: value))")
+    }
+}
+
+extension Date {
+   func getFormattedDate(format: String) -> String {
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = format
+        return dateformat.string(from: self)
     }
 }

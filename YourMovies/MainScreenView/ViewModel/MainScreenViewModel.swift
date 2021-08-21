@@ -29,15 +29,16 @@ final class MainScreenViewModel: ObservableObject {
     @MainActor
     func featchData() async {
         do {
-            Task.detached(priority: .medium) {
-                self.trendingRateMovies = try await self.topRateNetworkClient.trendingMovies()
-                Log.info("Task.detached first \(Thread.current)")
-            }
-            
-            Task.detached(priority: .medium) {
-                self.topRateMovies = try await self.topRateNetworkClient.trendingMovies()
-                Log.info("Task.detached second \(Thread.current)")
-            }
+            try await MainDataCollection().fecheAll()
+//            Task.detached(priority: .medium) {
+//                self.trendingRateMovies = try await self.topRateNetworkClient.trendingMovies()
+//                Log.info("Task.detached first \(Thread.current)")
+//            }
+//
+//            Task.detached(priority: .medium) {
+//                self.topRateMovies = try await self.topRateNetworkClient.trendingMovies()
+//                Log.info("Task.detached second \(Thread.current)")
+//            }
             Log.info("details downl")
         } catch {
             Log.error(error)
