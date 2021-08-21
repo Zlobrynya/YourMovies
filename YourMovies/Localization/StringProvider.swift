@@ -1,6 +1,6 @@
 //
 //  StringProvider.swift
-//  StringProvider
+//  YourMovies
 //
 //  Created by Nikita Nikitin on 08.08.2021.
 //

@@ -1,29 +1,29 @@
 //
-//  TrendingNetworkClient.swift
-//  YourMovies
+//  FilmsNetworkClient.swift
+//  FilmsNetworkClient
 //
-//  Created by Nikita Nikitin on 17.07.2021.
+//  Created by Nikita Nikitin on 21.08.2021.
 //
 
 import Foundation
 import NetworkFramework
 
-protocol TrendingNetworkClientProtocol {
-    func trendingMovies() async throws -> [FilmProtocol]?
+protocol MoviesNetworkClientProtocol {
+    func fetchMovies() async throws -> [FilmProtocol]?
 }
 
-struct TrendingNetworkClient: TrendingNetworkClientProtocol {
+struct MoviesNetworkClient<Constants>: MoviesNetworkClientProtocol where Constants: MoviesConstantsProtocol {
 
     // MARK: - External Dependencies
 
     private let networkService: NetworkServiceProtocol
-    private let constants: MoviesConstantsProtocol
+    private let constants: Constants
     
     // MARK: - Lifecycle
 
     init(
         networkService: NetworkServiceProtocol = NetworkService(),
-        constants: MoviesConstantsProtocol = TrendingConstants()
+        constants: Constants
     ) {
         self.networkService = networkService
         self.constants = constants
@@ -31,7 +31,7 @@ struct TrendingNetworkClient: TrendingNetworkClientProtocol {
 
     // MARK: - Public functions
 
-    func trendingMovies() async throws -> [FilmProtocol]? {
+    func fetchMovies() async throws -> [FilmProtocol]? {
         guard let url = URL(string: constants.url) else { throw NetworkingError.emptyResponse }
         let parameters = GeneralParameters(apiKey: constants.apiKey, language: constants.language)
         let films = try await networkService.get(

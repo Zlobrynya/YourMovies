@@ -20,7 +20,9 @@ final class MainScreenViewModel: ObservableObject {
     
     // MARK: - Lifecycle
     
-    init(topRateNetworkClient: TrendingNetworkClientProtocol = TrendingNetworkClient()) {
+    init(
+        topRateNetworkClient: TrendingNetworkClientProtocol = TrendingNetworkClient()
+    ) {
         self.topRateNetworkClient = topRateNetworkClient
     }
     

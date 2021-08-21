@@ -7,18 +7,11 @@
 
 import Foundation
 
-protocol TrendingConstantsProtocol {
-    var trendingMovies: String { get }
-    var storeImage: String { get }
-    var language: String { get }
-    var apiKey: String { get }
-}
-
-struct TrendingConstants: TrendingConstantsProtocol {
+struct TrendingConstants: MoviesConstantsProtocol {
 
     // MARK: - Public properties
 
-    let trendingMovies: String
+    let url: String
     let storeImage: String
     let language: String
     let apiKey: String
@@ -33,10 +26,9 @@ struct TrendingConstants: TrendingConstantsProtocol {
         timeWindowsPlaceholder: TimeWindowsPlaceholderProtocol = TimeWindowsPlaceholder()
     ) {
         language = locale.languageCode ?? "en"
-        Log.debug(Locale.current.languageCode)
         apiKey = apiKeys.apiKey
         storeImage = endpoints.storeImage
-        trendingMovies = endpoints.mainApi + endpoints.trending
+        url = endpoints.mainApi + endpoints.trending
             .replacingOccurrences(of: mediaTypePlaceholder.value, with: TrendingMediaType.movie.rawValue)
             .replacingOccurrences(of: timeWindowsPlaceholder.value, with: TrendingTimeType.day.rawValue)
     }

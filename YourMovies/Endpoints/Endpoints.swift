@@ -13,6 +13,7 @@ protocol EndpointsProtocol: Decodable {
     var popularMovies: String { get }
     var mainApi: String { get }
     var trending: String { get }
+    var upcomingMovies: String { get }
 }
 
 struct Endpoints: EndpointsProtocol {
@@ -21,4 +22,5 @@ struct Endpoints: EndpointsProtocol {
     let mainApi: String
     let storeImage: String
     let trending: String
+    let upcomingMovies: String
 }

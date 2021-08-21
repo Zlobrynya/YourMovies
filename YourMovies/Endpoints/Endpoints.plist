@@ -10,6 +10,8 @@
 	<string>movie/popular</string>
 	<key>topRatedMovies</key>
 	<string>movie/top_rated</string>
+	<key>upcomingMovies</key>
+	<string>movie/upcoming</string>
 	<key>trending</key>
 	<string>trending/{media_type}/{time_window}</string>
 </dict>
