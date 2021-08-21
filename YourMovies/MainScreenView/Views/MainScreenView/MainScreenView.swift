@@ -42,6 +42,9 @@ struct MainScreenView: View {
         ScrollView {
             VStack {
                 topRates
+                topRates
+                topRates
+                topRates
                 Spacer()
             }
         }
@@ -60,7 +63,7 @@ struct MainScreenView: View {
     }
 
     var topRates: AnyView? {
-        guard let films = viewModel.upcomingMovies else { return nil }
+        guard let films = viewModel.topRateMovies else { return nil }
         return MainBaseRowView(films: films, title: stringProvider.topRatedMovies)
             .asAnyView()
     }

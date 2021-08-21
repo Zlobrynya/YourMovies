@@ -8,5 +8,21 @@
 import Foundation
 
 struct ResponceFilms: Decodable {
-    let results: [Film]
+    
+    // MARK: - CodingKeys
+    
+    enum CodingKeys: String, CodingKey {
+        case results
+    }
+    
+    // MARK: - Public properties
+    
+    let results: [FilmProtocol]
+    
+    // MARK: - Lifecycle
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        results = try container.decode([Film].self, forKey: .results)
+    }
 }

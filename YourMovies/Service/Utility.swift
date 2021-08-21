@@ -7,7 +7,7 @@
 
 import Foundation
 
-func inMainActor(_ operation: @escaping () -> Void) {
+func performInMainActor(_ operation: @escaping () -> Void) {
     Task {
         await MainActor.run {
             operation()

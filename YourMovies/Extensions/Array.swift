@@ -7,10 +7,10 @@
 
 import Foundation
 
-extension Array where Element == Film {
-    
+extension Array where Element == FilmProtocol {
+
     func updatePath(withStoreImageUrl url: String) -> Self {
-        self.map { item in
+        map { item in
             var locItem = item
             locItem.updatePath(withStoreImageUrl: url)
             return locItem

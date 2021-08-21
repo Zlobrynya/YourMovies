@@ -16,8 +16,7 @@ struct ImageView<P, I>: View where P: View, I: View {
     // MARK: - External Dependencies
 
     @ViewBuilder private var placeholder: () -> P
-    @ViewBuilder private var content: (
-        Image) -> I
+    @ViewBuilder private var content: (Image) -> I
 
     // MARK: - Lifecycle
 
@@ -31,25 +30,21 @@ struct ImageView<P, I>: View where P: View, I: View {
         self.content = content
         viewModel = imageViewModelFactory.viewModel(with: url)
     }
-    
+
     init(
         url: String?,
         @ViewBuilder placeholder: @escaping () -> P,
         imageViewModelFactory: ImageViewModelFactoryProtocol = ImageViewModelFactory()
     ) where I == Image {
         self.placeholder = placeholder
-        self.content = { $0 }
+        content = { $0 }
         viewModel = imageViewModelFactory.viewModel(with: url)
     }
 
     // MARK: - Body
 
     var body: some View {
-        Group {
-            main
-        }.task {
-            await viewModel.fetchImage()
-        }
+        main.task { await viewModel.fetchImage() }
     }
 
     // MARK: - Views

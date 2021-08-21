@@ -8,3 +8,5 @@
 
 "dailyTrendingMovies" = "Daily trending movies";
 "topRatedMovies" = "Top rated movies on TMDB";
+"popularMovies" = "Popular movies on TMDB";
+"upcomingMovies" = "Upcoming movies in theatres";

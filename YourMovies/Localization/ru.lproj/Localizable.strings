@@ -8,3 +8,5 @@
 
 "dailyTrendingMovies" = "Сегодня в тренде:";
 "topRatedMovies" = "Лучшие фильмы на TMDB";
+"popularMovies" = "Популярные фильмы на TMDB";
+"upcomingMovies" = "Предстоящие фильмы в кинотеатрах";

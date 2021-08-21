@@ -37,25 +37,27 @@ final class MainScreenViewModel: ObservableObject, MainDataCollectionDelegate {
     // MARK: - MainDataCollectionDelegate Conformance
 
     func trendingMoviesDidSucceed(_ films: [FilmProtocol]?) {
-        inMainActor {
-            self.trendingRateMovies = films
+        performInMainActor {
+            withAnimation(.linear(duration: 1)) {
+                self.trendingRateMovies = films
+            }
         }
     }
 
     func topRatedMoviesDidSucceed(_ films: [FilmProtocol]?) {
-        inMainActor {
+        performInMainActor {
             self.topRateMovies = films
         }
     }
 
     func upcomingMoviesDidSucceed(_ films: [FilmProtocol]?) {
-        inMainActor {
+        performInMainActor {
             self.upcomingMovies = films
         }
     }
 
     func popularMoviesDidSucceed(_ films: [FilmProtocol]?) {
-        inMainActor {
+        performInMainActor {
             self.popularRateMovies = films
         }
     }
