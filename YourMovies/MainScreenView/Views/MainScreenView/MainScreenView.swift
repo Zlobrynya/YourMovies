@@ -32,7 +32,7 @@ struct MainScreenView: View {
             .background(Color.backgoundSecond)
             .edgesIgnoringSafeArea(.bottom)
             .navigationBarHidden(true)
-            .task { await viewModel.featchData() }
+            .task { viewModel.featchData() }
         }
     }
 
@@ -60,7 +60,7 @@ struct MainScreenView: View {
     }
 
     var topRates: AnyView? {
-        guard let films = viewModel.topRateMovies else { return nil }
+        guard let films = viewModel.upcomingMovies else { return nil }
         return MainBaseRowView(films: films, title: stringProvider.topRatedMovies)
             .asAnyView()
     }

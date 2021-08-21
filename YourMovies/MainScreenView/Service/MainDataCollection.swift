@@ -15,9 +15,10 @@ protocol MainDataCollectionDelegate: AnyObject {
 }
 
 protocol MainDataCollectionProtocol: AnyObject {
-    func fecheAll() async throws
 
     var delegate: MainDataCollectionDelegate? { get set }
+
+    func fecheAll()
 }
 
 final class MainDataCollection: MainDataCollectionProtocol {
@@ -47,7 +48,7 @@ final class MainDataCollection: MainDataCollectionProtocol {
 
     // MARK: - Public functions
 
-    func fecheAll() async throws {
+    func fecheAll() {
         factoryTask(operation: topRateNetworkClient.fetchMovies, complite: delegate?.topRatedMoviesDidSucceed(_:))
         factoryTask(operation: upcomingNetworClient.fetchMovies, complite: delegate?.upcomingMoviesDidSucceed(_:))
         factoryTask(operation: trendingNetworClient.fetchMovies, complite: delegate?.trendingMoviesDidSucceed(_:))

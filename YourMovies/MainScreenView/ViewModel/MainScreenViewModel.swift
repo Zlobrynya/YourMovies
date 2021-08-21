@@ -7,44 +7,56 @@
 
 import SwiftUI
 
-final class MainScreenViewModel: ObservableObject {
-    
+final class MainScreenViewModel: ObservableObject, MainDataCollectionDelegate {
+
     // MARK: - Public properties
-    
-    @Published var trendingRateMovies: [FilmProtocol]?
+
     @Published var topRateMovies: [FilmProtocol]?
+    @Published var upcomingMovies: [FilmProtocol]?
+    @Published var popularRateMovies: [FilmProtocol]?
+    @Published var trendingRateMovies: [FilmProtocol]?
 
     // MARK: - External Dependencies
-    
-    private let topRateNetworkClient: TrendingNetworkClientProtocol
-    
+
+    private let mainDataCollection: MainDataCollectionProtocol
+
     // MARK: - Lifecycle
-    
-    init(
-        topRateNetworkClient: TrendingNetworkClientProtocol = TrendingNetworkClient()
-    ) {
-        self.topRateNetworkClient = topRateNetworkClient
+
+    init(mainDataCollection: MainDataCollectionProtocol = MainDataCollection()) {
+        self.mainDataCollection = mainDataCollection
+
+        self.mainDataCollection.delegate = self
     }
-    
+
     // MARK: - Public functions
 
-    @MainActor
-    func featchData() async {
-        do {
-            try await MainDataCollection().fecheAll()
-//            Task.detached(priority: .medium) {
-//                self.trendingRateMovies = try await self.topRateNetworkClient.trendingMovies()
-//                Log.info("Task.detached first \(Thread.current)")
-//            }
-//
-//            Task.detached(priority: .medium) {
-//                self.topRateMovies = try await self.topRateNetworkClient.trendingMovies()
-//                Log.info("Task.detached second \(Thread.current)")
-//            }
-            Log.info("details downl")
-        } catch {
-            Log.error(error)
+    func featchData() {
+        mainDataCollection.fecheAll()
+    }
+
+    // MARK: - MainDataCollectionDelegate Conformance
+
+    func trendingMoviesDidSucceed(_ films: [FilmProtocol]?) {
+        inMainActor {
+            self.trendingRateMovies = films
         }
     }
-    
+
+    func topRatedMoviesDidSucceed(_ films: [FilmProtocol]?) {
+        inMainActor {
+            self.topRateMovies = films
+        }
+    }
+
+    func upcomingMoviesDidSucceed(_ films: [FilmProtocol]?) {
+        inMainActor {
+            self.upcomingMovies = films
+        }
+    }
+
+    func popularMoviesDidSucceed(_ films: [FilmProtocol]?) {
+        inMainActor {
+            self.popularRateMovies = films
+        }
+    }
 }
