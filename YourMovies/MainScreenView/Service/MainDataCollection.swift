@@ -15,18 +15,30 @@ protocol MainDataCollectionDelegate: AnyObject {
 }
 
 protocol MainDataCollectionProtocol: AnyObject {
+    
+    var trendingMovies: [FilmProtocol] { get }
+    var upcomingMovies: [FilmProtocol] { get }
+    var topRateMovies: [FilmProtocol] { get }
+    var popularMovies: [FilmProtocol] { get }
 
     var delegate: MainDataCollectionDelegate? { get set }
 
-    func fecheAll()
+    func fecheAll() async throws
 }
 
 final class MainDataCollection: MainDataCollectionProtocol {
 
+    // MARK: - Public properties
+
+    var trendingMovies: [FilmProtocol] = []
+    var upcomingMovies: [FilmProtocol] = []
+    var topRateMovies: [FilmProtocol] = []
+    var popularMovies: [FilmProtocol] = []
+
     // MARK: - External Dependencies
 
     weak var delegate: MainDataCollectionDelegate?
-    
+
     private let topRateNetworkClient: MoviesNetworkClientProtocol
     private let upcomingNetworClient: MoviesNetworkClientProtocol
     private let trendingNetworClient: MoviesNetworkClientProtocol
@@ -48,26 +60,32 @@ final class MainDataCollection: MainDataCollectionProtocol {
 
     // MARK: - Public functions
 
-    func fecheAll() {
-        factoryTask(operation: topRateNetworkClient.fetchMovies, complite: delegate?.topRatedMoviesDidSucceed(_:))
-        factoryTask(operation: upcomingNetworClient.fetchMovies, complite: delegate?.upcomingMoviesDidSucceed(_:))
-        factoryTask(operation: trendingNetworClient.fetchMovies, complite: delegate?.trendingMoviesDidSucceed(_:))
-        factoryTask(operation: popularNetworClient.fetchMovies, complite: delegate?.popularMoviesDidSucceed(_:))
+    func fecheAll() async throws {
+        async let trending = trendingNetworClient.fetchMovies()
+        async let upcoming = upcomingNetworClient.fetchMovies()
+        async let topRate = topRateNetworkClient.fetchMovies()
+        async let popular = popularNetworClient.fetchMovies()
+
+        let films = try await (trending, upcoming, topRate, popular)
+        trendingMovies = films.0 ?? []
+        upcomingMovies = films.1 ?? []
+        topRateMovies = films.2 ?? []
+        popularMovies = films.3 ?? []
     }
 
     // MARK: - Private functions
-
-    private func factoryTask(
-        operation: @escaping () async throws -> [FilmProtocol]?,
-        complite: (([FilmProtocol]?) -> Void)?
-    ) {
-        Task {
-            do {
-                let films = try await operation()
-                complite?(films)
-            } catch {
-                Log.error(error.localizedDescription)
-            }
-        }
-    }
+//
+//    private func factoryTask(
+//        operation: @escaping () async throws -> [FilmProtocol]?,
+//        complite: (([FilmProtocol]?) -> Void)?
+//    ) {
+//        Task {
+//            do {
+//                let films = try await operation()
+//                complite?(films)
+//            } catch {
+//                Log.error(error.localizedDescription)
+//            }
+//        }
+//    }
 }

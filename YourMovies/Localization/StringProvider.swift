@@ -17,6 +17,6 @@ protocol LocalizableStringProviderProtocol {
 final class LocalizableStringProvider: LocalizableStringProviderProtocol, ObservableObject {
     var dailyTrendingMovies: String { NSLocalizedString("dailyTrendingMovies", bundle: .main, comment: "") }
     var topRatedMovies: String { NSLocalizedString("topRatedMovies", bundle: .main, comment: "") }
-    var popularMovies: String { NSLocalizedString("topRatedMovies", bundle: .main, comment: "") }
-    var upcomingMovies: String { NSLocalizedString("topRatedMovies", bundle: .main, comment: "") }
+    var popularMovies: String { NSLocalizedString("popularMovies", bundle: .main, comment: "") }
+    var upcomingMovies: String { NSLocalizedString("upcomingMovies", bundle: .main, comment: "") }
 }
