@@ -32,18 +32,17 @@ struct MainBaseRowView: View {
     // MARK: - Private properties
 
     private var filmsView: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(films, id: \.id) { film in
-                    image(forUrl: film.posterPath)
-                }
+//        ScrollView(.vertical, showsIndicators: false) {
+        LazyVGrid(columns: columns, spacing: 20) {
+            ForEach(films, id: \.id) { film in
+                image(forUrl: film.posterPath)
             }
-            .drawingGroup()
+        }
+        .animation(nil)
+        .drawingGroup()
 //            .transition(.opacity)
-            .animation(.easeIn.delay(0.5))
-        } 
+//        }
         //          .padding([.horizontal], stylingProvider.spacing12)
-
     }
 
     // MARK: - Private functions

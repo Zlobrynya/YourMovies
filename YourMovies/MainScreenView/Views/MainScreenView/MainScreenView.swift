@@ -45,6 +45,7 @@ struct MainScreenView: View {
                 topRates
                 Spacer()
             }
+            .animation(.easeIn(duration: 3))
         }
         .background { Rectangle().fill(Color.white) }
         .cornerRadius(20, corners: [.topLeft, .topRight])
@@ -67,12 +68,6 @@ struct MainScreenView: View {
                 title: stringProvider.topRatedMovies
             )
         }
-//        MainBaseRowView(
-//            films: viewModel.topRateMovies ?? preview(),
-//            title: stringProvider.topRatedMovies
-//        )
-//            .redacted(reason: viewModel.topRateMovies == nil ? .placeholder : .privacy)
-//            .redacted(reason: .placeholder)
     }
 
     func preview() -> [FilmProtocol] {
