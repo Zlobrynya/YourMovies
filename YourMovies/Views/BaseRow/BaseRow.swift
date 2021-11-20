@@ -44,7 +44,7 @@ struct BaseRow<C, T>: View where C: View, T: View {
     // MARK: - Body
 
     var body: some View {
-        VStack(alignment: .leading, spacing: spacing) {
+        VStack(alignment: .leading, spacing: 0) {
             titleView(Text(title))
             content()
         }

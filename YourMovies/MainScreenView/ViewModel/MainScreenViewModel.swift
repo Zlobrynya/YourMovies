@@ -28,9 +28,9 @@ final class MainScreenViewModel: ObservableObject {
 
     // MARK: - Public functions
 
-    func featchData() async {
+    func fetchData() async {
         do {
-            try await mainDataCollection.fecheAll()
+            try await mainDataCollection.fetchAll()
             await updateUI()
         } catch {
             Log.error(error)
@@ -39,9 +39,9 @@ final class MainScreenViewModel: ObservableObject {
 
     @MainActor
     private func updateUI() {
-//        withAnimation(.linear(duration: 1)) {
+        withAnimation(.linear(duration: 1)) {
             self.trendingRateMovies = self.mainDataCollection.trendingMovies
-//        }
+        }
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
             self.upcomingMovies = self.mainDataCollection.upcomingMovies
             self.popularRateMovies = self.mainDataCollection.popularMovies

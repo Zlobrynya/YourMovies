@@ -29,10 +29,11 @@ struct MainScreenView: View {
                 carousel
                 main
             }
-            .background(Color.backgoundSecond)
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .background(Color.backgroundSecond)
             .edgesIgnoringSafeArea(.bottom)
             .navigationBarHidden(true)
-            .task { viewModel.featchData() }
+            .task { await viewModel.fetchData() }
         }
     }
 
@@ -42,13 +43,9 @@ struct MainScreenView: View {
         ScrollView {
             VStack {
                 topRates
-                topRates
-                topRates
-                topRates
                 Spacer()
             }
         }
-        .frame(minWidth: 0, maxWidth: .infinity)
         .background { Rectangle().fill(Color.white) }
         .cornerRadius(20, corners: [.topLeft, .topRight])
     }
@@ -62,10 +59,26 @@ struct MainScreenView: View {
             .asAnyView()
     }
 
-    var topRates: AnyView? {
-        guard let films = viewModel.topRateMovies else { return nil }
-        return MainBaseRowView(films: films, title: stringProvider.topRatedMovies)
-            .asAnyView()
+    @ViewBuilder
+    var topRates: some View {
+        if let films = viewModel.topRateMovies {
+            MainBaseRowView(
+                films: films,
+                title: stringProvider.topRatedMovies
+            )
+        }
+//        MainBaseRowView(
+//            films: viewModel.topRateMovies ?? preview(),
+//            title: stringProvider.topRatedMovies
+//        )
+//            .redacted(reason: viewModel.topRateMovies == nil ? .placeholder : .privacy)
+//            .redacted(reason: .placeholder)
+    }
+
+    func preview() -> [FilmProtocol] {
+        [Int](0 ... 10).reduce(into: [FilmProtocol]()) { array, id in
+            array.append(Film(id: id, title: ""))
+        }
     }
 }
 

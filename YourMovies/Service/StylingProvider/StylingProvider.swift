@@ -14,7 +14,8 @@ protocol StylingProviderProtocol {
 
 final class StylingProvider: ObservableObject, StylingProviderProtocol {
     var heightRow: CGFloat { UIScreen.main.bounds.height / 5.5 }
-    var test: CGFloat { UIScreen.main.bounds.width / 3.5 }
+    var test: CGFloat = UIScreen.main.bounds.width / 3.5
+    var widthScreen: CGFloat { UIScreen.main.bounds.width }
     
     var spacing12: CGFloat { 12 }
 }

@@ -23,7 +23,7 @@ protocol MainDataCollectionProtocol: AnyObject {
 
     var delegate: MainDataCollectionDelegate? { get set }
 
-    func fecheAll() async throws
+    func fetchAll() async throws
 }
 
 final class MainDataCollection: MainDataCollectionProtocol {
@@ -40,31 +40,31 @@ final class MainDataCollection: MainDataCollectionProtocol {
     weak var delegate: MainDataCollectionDelegate?
 
     private let topRateNetworkClient: MoviesNetworkClientProtocol
-    private let upcomingNetworClient: MoviesNetworkClientProtocol
-    private let trendingNetworClient: MoviesNetworkClientProtocol
-    private let popularNetworClient: MoviesNetworkClientProtocol
+    private let upcomingNetworkClient: MoviesNetworkClientProtocol
+    private let trendingNetworkClient: MoviesNetworkClientProtocol
+    private let popularNetworkClient: MoviesNetworkClientProtocol
 
     // MARK: - Lifecycle
 
     init(
         topRateNetworkClient: MoviesNetworkClientProtocol = MoviesNetworkClient(constants: TopRatedMoviesConstants()),
-        upcomingNetworClient: MoviesNetworkClientProtocol = MoviesNetworkClient(constants: UpcomingConstants()),
-        trendingNetworClient: MoviesNetworkClientProtocol = MoviesNetworkClient(constants: TrendingConstants()),
-        popularNetworClient: MoviesNetworkClientProtocol = MoviesNetworkClient(constants: PopularMoviesConstants())
+        upcomingNetworkClient: MoviesNetworkClientProtocol = MoviesNetworkClient(constants: UpcomingConstants()),
+        trendingNetworkClient: MoviesNetworkClientProtocol = MoviesNetworkClient(constants: TrendingConstants()),
+        popularNetworkClient: MoviesNetworkClientProtocol = MoviesNetworkClient(constants: PopularMoviesConstants())
     ) {
         self.topRateNetworkClient = topRateNetworkClient
-        self.upcomingNetworClient = upcomingNetworClient
-        self.trendingNetworClient = trendingNetworClient
-        self.popularNetworClient = popularNetworClient
+        self.upcomingNetworkClient = upcomingNetworkClient
+        self.trendingNetworkClient = trendingNetworkClient
+        self.popularNetworkClient = popularNetworkClient
     }
 
     // MARK: - Public functions
 
-    func fecheAll() async throws {
-        async let trending = trendingNetworClient.fetchMovies()
-        async let upcoming = upcomingNetworClient.fetchMovies()
+    func fetchAll() async throws {
+        async let trending = trendingNetworkClient.fetchMovies()
+        async let upcoming = upcomingNetworkClient.fetchMovies()
         async let topRate = topRateNetworkClient.fetchMovies()
-        async let popular = popularNetworClient.fetchMovies()
+        async let popular = popularNetworkClient.fetchMovies()
 
         let films = try await (trending, upcoming, topRate, popular)
         trendingMovies = films.0 ?? []

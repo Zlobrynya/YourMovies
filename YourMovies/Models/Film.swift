@@ -45,7 +45,7 @@ struct Film: FilmProtocol, Hashable {
     
     // MARK: - Lifecycle
     
-    init(id: Int, title: String, posterPath: String?, backdropPath: String?) {
+    init(id: Int, title: String, posterPath: String? = nil, backdropPath: String? = nil) {
         self.title = title
         self.posterPath = posterPath
         self.backdropPath = backdropPath

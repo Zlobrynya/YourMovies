@@ -9,6 +9,6 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    static let backgoundFirst = Color("BackgoundFirst", bundle: .main)
-    static let backgoundSecond = Color("BackgoundSecond", bundle: .main)
+    static let backgroundFirst = Color("BackgroundFirst", bundle: .main)
+    static let backgroundSecond = Color("BackgroundSecond", bundle: .main)
 }

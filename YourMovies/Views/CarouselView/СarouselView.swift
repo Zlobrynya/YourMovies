@@ -19,7 +19,7 @@ struct CarouselView<Content, T>: View where Content: View {
     // MARK: - External Dependencies
 
     private let spacing: CGFloat
-    private let tralingSpacing: CGFloat
+    private let trailingSpacing: CGFloat
     private var action: (T) -> Content
     private let array: [T]
 
@@ -27,14 +27,14 @@ struct CarouselView<Content, T>: View where Content: View {
 
     init(
         array: [T],
-        tralingSpacing: CGFloat = 30,
+        trailingSpacing: CGFloat = 30,
         spacing: CGFloat = -15,
         @ViewBuilder action: @escaping (T) -> Content
     ) {
         self.action = action
         self.array = array
         self.spacing = spacing
-        self.tralingSpacing = tralingSpacing
+        self.trailingSpacing = trailingSpacing
     }
 
     // MARK: - Body
@@ -42,8 +42,8 @@ struct CarouselView<Content, T>: View where Content: View {
     var body: some View {
         GeometryReader { globalProxy in
             // TODO: Should hide in a separate class
-            let width = globalProxy.size.width - tralingSpacing
-            let additionalOffset = currentItem != 0 ? ((tralingSpacing / 2) + CGFloat(self.currentItem) * abs(spacing)) : 0
+            let width = globalProxy.size.width - trailingSpacing
+            let additionalOffset = currentItem != 0 ? ((trailingSpacing / 2) + CGFloat(self.currentItem) * abs(spacing)) : 0
             HStack(spacing: spacing) {
                 ForEach(Array(array.enumerated()), id: \.offset) { offset, item in
                     action(item)
