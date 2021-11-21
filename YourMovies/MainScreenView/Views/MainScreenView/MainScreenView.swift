@@ -44,8 +44,7 @@ struct MainScreenView: View {
             VStack {
                 topRates
                 Spacer()
-            }
-            .animation(.easeIn(duration: 3))
+            }.animation(.easeIn(duration: 2), value: viewModel.topRateMovies?.isEmpty)
         }
         .background { Rectangle().fill(Color.white) }
         .cornerRadius(20, corners: [.topLeft, .topRight])
@@ -53,11 +52,12 @@ struct MainScreenView: View {
 
     // MARK: - Optional Views
 
-    var carousel: AnyView? {
-        guard let films = viewModel.trendingRateMovies else { return nil }
-        return TrendingView(items: films)
-            .padding([.top, .horizontal], stylingProvider.spacing12)
-            .asAnyView()
+    @ViewBuilder
+    var carousel: some View {
+        if let films = viewModel.trendingRateMovies {
+            TrendingView(items: films)
+                .padding([.top, .horizontal], stylingProvider.spacing12)
+        }
     }
 
     @ViewBuilder
@@ -66,13 +66,7 @@ struct MainScreenView: View {
             MainBaseRowView(
                 films: films,
                 title: stringProvider.topRatedMovies
-            )
-        }
-    }
-
-    func preview() -> [FilmProtocol] {
-        [Int](0 ... 10).reduce(into: [FilmProtocol]()) { array, id in
-            array.append(Film(id: id, title: ""))
+            ).padding(.top, 24)
         }
     }
 }

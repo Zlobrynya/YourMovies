@@ -19,17 +19,14 @@ struct TrendingView: View {
     // MARK: - Body
 
     var body: some View {
-        BaseRow(
-            title: stringProvider.dailyTrendingMovies,
-            titleView: { $0.foregroundColor(.white) },
-            content: {
-                CarouselView(array: items) { item in
-                    TrendingRowView(film: item)
-                }
-                .frame(height: stylingProvider.heightRow)
-                .padding(.horizontal, 30)
+        VStack(alignment: .leading) {
+            Text(stringProvider.dailyTrendingMovies).foregroundColor(.white)
+            CarouselView(array: items) { item in
+                TrendingRowView(film: item)
             }
-        )
+            .frame(height: stylingProvider.heightRow)
+            .padding(.horizontal, 30)
+        }
     }
 }
 
