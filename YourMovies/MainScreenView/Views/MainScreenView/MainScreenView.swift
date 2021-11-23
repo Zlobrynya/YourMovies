@@ -40,11 +40,18 @@ struct MainScreenView: View {
     // MARK: - Views
 
     var main: some View {
-        ScrollView {
-            VStack {
-                topRates
-                Spacer()
-            }.animation(.easeIn(duration: 2), value: viewModel.topRateMovies?.isEmpty)
+        VStack {
+            TitleBarView(titles: [.popular, .topRate, .upcoming], action: { _ in })
+                .padding(.horizontal, 15)
+                .padding(.vertical, 5)
+            ScrollView {
+                VStack {
+                    topRates
+                    Spacer()
+                }
+                .transition(.opacity)
+                .animation(.easeIn(duration: 2), value: viewModel.topRateMovies?.isEmpty)
+            }
         }
         .background { Rectangle().fill(Color.white) }
         .cornerRadius(20, corners: [.topLeft, .topRight])
@@ -66,7 +73,7 @@ struct MainScreenView: View {
             MainBaseRowView(
                 films: films,
                 title: stringProvider.topRatedMovies
-            ).padding(.top, 24)
+            )
         }
     }
 }

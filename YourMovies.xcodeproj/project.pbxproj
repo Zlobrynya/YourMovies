@@ -11,7 +11,7 @@
 		81032AC426BF1C260080ACAF /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81032AC326BF1C260080ACAF /* View.swift */; };
 		81032AC726BF244B0080ACAF /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81032AC626BF244B0080ACAF /* RoundedCorner.swift */; };
 		81032ACD26BFEB4D0080ACAF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81032ACF26BFEB4D0080ACAF /* Localizable.strings */; };
-		8127EA4E26C0081900576B57 /* StringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127EA4D26C0081900576B57 /* StringProvider.swift */; };
+		8127EA4E26C0081900576B57 /* LocalizableStringProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127EA4D26C0081900576B57 /* LocalizableStringProvider.swift */; };
 		8132D3BC26D0EC1300102937 /* FilmsNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132D3BB26D0EC1300102937 /* FilmsNetworkClient.swift */; };
 		8132D3BE26D0ED2B00102937 /* MoviesConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132D3BD26D0ED2B00102937 /* MoviesConstants.swift */; };
 		8132D3C226D0EECA00102937 /* UpcomingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8132D3C126D0EECA00102937 /* UpcomingConstants.swift */; };
@@ -82,7 +82,7 @@
 		81032AC626BF244B0080ACAF /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		81032ACE26BFEB4D0080ACAF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		81032AD026BFEB4E0080ACAF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		8127EA4D26C0081900576B57 /* StringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProvider.swift; sourceTree = "<group>"; };
+		8127EA4D26C0081900576B57 /* LocalizableStringProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStringProvider.swift; sourceTree = "<group>"; };
 		8132D3BB26D0EC1300102937 /* FilmsNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsNetworkClient.swift; sourceTree = "<group>"; };
 		8132D3BD26D0ED2B00102937 /* MoviesConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesConstants.swift; sourceTree = "<group>"; };
 		8132D3C126D0EECA00102937 /* UpcomingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingConstants.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				81032ACF26BFEB4D0080ACAF /* Localizable.strings */,
-				8127EA4D26C0081900576B57 /* StringProvider.swift */,
+				8127EA4D26C0081900576B57 /* LocalizableStringProvider.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -631,7 +631,7 @@
 				81CA9CF9269B3D1A00C88B92 /* DiContainer.swift in Sources */,
 				81D1887E26C04F2400946928 /* Text.swift in Sources */,
 				81E6109F26CEBA9C0050C6CC /* StylingProvider.swift in Sources */,
-				8127EA4E26C0081900576B57 /* StringProvider.swift in Sources */,
+				8127EA4E26C0081900576B57 /* LocalizableStringProvider.swift in Sources */,
 				8132D3C526D0F28F00102937 /* TopRatedMoviesConstants.swift in Sources */,
 				81CA9CF0269B3A1900C88B92 /* PlistFactory.swift in Sources */,
 				81608BD626A47F3B000556B5 /* DirectoryProvider.swift in Sources */,

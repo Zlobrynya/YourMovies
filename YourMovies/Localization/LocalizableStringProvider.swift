@@ -1,5 +1,5 @@
 //
-//  StringProvider.swift
+//  LocalizableStringProvider.swift
 //  YourMovies
 //
 //  Created by Nikita Nikitin on 08.08.2021.
